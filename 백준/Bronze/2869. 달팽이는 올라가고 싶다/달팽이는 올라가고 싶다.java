@@ -1,0 +1,24 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        double A = Integer.parseInt(st.nextToken());
+        double B = Integer.parseInt(st.nextToken());
+        double V = Integer.parseInt(st.nextToken());
+
+        double m = V-A;
+        double m2 = A-B;
+        int result;
+        if(A==V) result=0;
+        else {
+            if(m<m2) result=1;
+            else result = (int) Math.ceil(m/m2);
+        }
+        System.out.println(result+1);
+    }
+}
