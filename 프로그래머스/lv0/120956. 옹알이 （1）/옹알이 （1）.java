@@ -1,15 +1,13 @@
 class Solution {
     public int solution(String[] babbling) {
         int answer = 0;
-        for(int i=0; i< babbling.length; i++) {
-            babbling[i] = babbling[i].replace("aya"," ");
-            babbling[i] = babbling[i].replace("ye"," ");
-            babbling[i] = babbling[i].replace("woo"," ");
-            babbling[i] = babbling[i].replace("ma"," ");
-            babbling[i] = babbling[i].replaceAll(" ","");
-            
-            if(babbling[i].equals(""))
-                answer++;
+        for(String s : babbling) {
+            s = s.replace("aya"," ");
+            s = s.replace("ye"," ");
+            s = s.replace("woo"," ");
+            s = s.replace("ma"," ");
+            s = s.replaceAll(" ","");
+            if(s.equals("")) answer++;
         }
         return answer;
     }
