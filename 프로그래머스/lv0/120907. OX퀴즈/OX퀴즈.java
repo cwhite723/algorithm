@@ -1,19 +1,19 @@
 class Solution {
     public String[] solution(String[] quiz) {
-        String[] str;
         String[] answer = new String[quiz.length];
-        
-        for(int i=0; i<quiz.length; i++) {
-            str = quiz[i].split(" ");
-            int x = Integer.parseInt(str[0]);
-            int y = Integer.parseInt(str[2]);
-            int result = Integer.parseInt(str[4]);
-            if(str[1].equals("-")) {
-                answer[i] = ((x-y)==result) ? "O" : "X";
+        int k = 0;
+        for(String s : quiz) {
+            String[] str = s.split(" ");
+            int a = 0;
+            if(str[1].equals("+")) {
+                a = Integer.parseInt(str[0])+Integer.parseInt(str[2]);
             }
             else {
-                answer[i] = ((x+y)==result) ? "O" : "X";
+                a = Integer.parseInt(str[0])-Integer.parseInt(str[2]);
             }
+            
+            if(a == Integer.parseInt(str[4])) answer[k++] = "O";
+            else answer[k++] = "X";
         }
         return answer;
     }
