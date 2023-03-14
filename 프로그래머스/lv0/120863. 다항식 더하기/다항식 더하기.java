@@ -1,24 +1,25 @@
-import java.io.*;
 class Solution {
     public String solution(String polynomial) {
-        String answer = "";
         StringBuilder sb = new StringBuilder();
-        String[] array = polynomial.split(" ");
-        int num = 0;
-        int xnum = 0;
-        for(String s : array) {
-            if(s.equals("+")) continue;
-            if(!s.contains("x")) num+=Integer.parseInt(s);
-            else {
-                if(s.length()==1) s = s.replaceAll("x","1");
-                else s = s.replaceAll("x", "");
-                xnum += Integer.parseInt(s);
+        String[] str = polynomial.split(" ");
+
+        int xValue = 0;
+        int value = 0;
+
+        for(int i=0; i<str.length; i++) {
+            if(str[i].contains("x")) {
+                if(str[i].length()==1) xValue += 1;
+                else xValue += Integer.parseInt(str[i].substring(0, str[i].length()-1));
+            }
+            else if(!str[i].equals("+")) {
+                value += Integer.parseInt(str[i]);
             }
         }
-        if(xnum>=2) answer += xnum+"x";
-        if(xnum==1) answer += "x"; 
-        if(!answer.equals("")&&num!=0) answer += " + ";
-        if(num!=0) answer += num;
-        return answer;
+
+        if(xValue>1) sb.append(xValue).append("x");
+        else if(xValue>0) sb.append("x");
+        if(xValue>0&&value>0) sb.append(" + ");
+        if(value>0) sb.append(value);
+        return sb.toString();
     }
 }
