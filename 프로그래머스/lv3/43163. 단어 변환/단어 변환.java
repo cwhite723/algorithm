@@ -7,16 +7,16 @@ class Solution {
     public int solution(String begin, String target, String[] words) {
         this.words = words;
         this.target = target;
-        answer = 0;
+        answer = 100;
         visited = new boolean[words.length];
         DFS(begin, 0);
         
-        return answer;
+        return answer == 100 ? 0 : answer;
     }
     
     void DFS(String begin, int count) {
         if(begin.equals(target)) {
-            answer = count;
+            answer = Math.min(answer, count);
             return;
         }
         
