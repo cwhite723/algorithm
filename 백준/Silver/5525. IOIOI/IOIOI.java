@@ -24,7 +24,9 @@ public class Main {
         int endIndex = findWord.length();
 
         for (int i=0; i<word.length()-findWord.length()+1; i++) {
-            if(word.substring(i, endIndex++).equals(findWord.toString())) result++;
+            if(word.charAt(i)=='I') {
+                if(word.substring(i, i+findWord.length()).equals(findWord.toString())) result++;
+            }
         }
 
         System.out.println(result);
