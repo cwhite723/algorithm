@@ -6,63 +6,60 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int[][] arr;
-    static int N;
-    static int M;
-    static int V;
-    static String result;
-    static String BFS() {
-        StringBuilder sb = new StringBuilder();
-        boolean[] visited = new boolean[N+1];
+    static int n;
+    static int m;
+    static int v;
+    static int[][] array;
+    static boolean[] visited;
+    static StringBuilder sb = new StringBuilder();
+    static void dfs(int start) {
+        visited[start] = true;
+        sb.append(start).append(" ");
+        for(int i=1; i<n+1; i++) {
+            if(array[start][i]==1 && !visited[i]) {
+                dfs(i);
+            }
+        }
+    }
+
+    static void bfs(int start) {
+        StringBuilder sb2 = new StringBuilder();
         Queue<Integer> qu = new LinkedList<>();
-        qu.add(V);
-        visited[V] = true;
+        visited = new boolean[n+1];
+        qu.add(start);
+        visited[start] = true;
         while(!qu.isEmpty()) {
-            int start = qu.poll();
-            sb.append(start).append(" ");
-            for(int i=1; i<=N; i++) {
-                if(!visited[i]&&arr[start][i]==1) {
-                    qu.add(i);
+            start = qu.poll();
+            sb2.append(start).append(" ");
+            for(int i=1; i<n+1; i++) {
+                if(array[start][i]==1&&!visited[i]) {
                     visited[i] = true;
+                    qu.add(i);
                 }
             }
         }
-        return sb.toString();
-    }
-
-    static void DFS(boolean[] visited,  int start) {
-        visited[start] = true;
-        result += start + " ";
-
-        for(int i=1; i<=N; i++) {
-            if(arr[start][i]==1&&!visited[i]) {
-                DFS(visited, i);
-            }
-        }
+        System.out.println(sb2.toString());
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        V = Integer.parseInt(st.nextToken());
-        result = "";
 
-        arr = new int[N+1][N+1];
-        for(int i=0; i<M; i++) {
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+        v = Integer.parseInt(st.nextToken());
+        visited = new boolean[n+1];
+
+        array = new int[n+1][n+1];
+        for(int i=0; i<m; i++) {
             st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
-
-            arr[x][y] = 1;
-            arr[y][x] = 1;
+            int row = Integer.parseInt(st.nextToken());
+            int column = Integer.parseInt(st.nextToken());
+            array[row][column] = 1;
+            array[column][row] = 1;
         }
 
-        boolean[] visited = new boolean[N+1];
-        DFS(visited, V);
-        String bfs = BFS();
-        System.out.println(result);
-        System.out.println(bfs);
+        dfs(v);
+        System.out.println(sb.toString());
+        bfs(v);
     }
 }
-
