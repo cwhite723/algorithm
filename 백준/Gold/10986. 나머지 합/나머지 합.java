@@ -13,8 +13,7 @@ public class Main {
 
         long[] numArr = new long[n+1];
         st = new StringTokenizer(br.readLine());
-        numArr[1] = Long.parseLong(st.nextToken());
-        for(int i=2; i<=n; i++) {
+        for(int i=1; i<=n; i++) {
             numArr[i] = numArr[i-1] + Long.parseLong(st.nextToken());
         }
         long sum = 0;
