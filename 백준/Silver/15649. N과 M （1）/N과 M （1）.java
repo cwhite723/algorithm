@@ -1,9 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -23,7 +20,7 @@ public class Main {
             if(!visit[i]) {
                 visit[i] = true;
                 str[k] = String.valueOf(i);
-                seq(count+1, Arrays.copyOfRange(str, 0, str.length+1), k+1);
+                seq(count+1, str, k+1);
                 visit[i] = false;
             }
         }
@@ -37,6 +34,6 @@ public class Main {
 
         visit = new boolean[n+1];
 
-        seq(0, new String[1],0);
+        seq(0, new String[m],0);
     }
 }
