@@ -7,12 +7,13 @@ public class Main {
     static int n;
     static int m;
     static boolean[] visit;
+    static StringBuilder sb = new StringBuilder();
     static void seq(int count, String[] str, int k) {
         if(count==m) {
             for(int i=0; i<m; i++) {
-                System.out.print(str[i] + " ");
+                sb.append(str[i]).append(" ");
             }
-            System.out.println();
+            sb.append("\n");
             return;
         }
 
@@ -35,5 +36,6 @@ public class Main {
         visit = new boolean[n+1];
 
         seq(0, new String[m],0);
+        System.out.println(sb.toString());
     }
 }
