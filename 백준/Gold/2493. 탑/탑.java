@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
@@ -16,10 +17,9 @@ public class Main {
             laser[i] = Integer.parseInt(st.nextToken());
         }
 
-        int[] answer = new int[n];
         Stack<Integer> stack = new Stack<>();
-        answer[0] = 0;
         stack.push(0);
+        sb.append("0 ");
 
         for(int i=1; i<n; i++) {
             while(!stack.isEmpty()) {
@@ -27,18 +27,16 @@ public class Main {
                 if(current<laser[i]) {
                     stack.pop();
                 } else {
-                    answer[i] = stack.peek() + 1;
+                    sb.append(stack.peek() + 1).append(" ");
                     break;
                 }
             }
             if(stack.isEmpty()) {
-                answer[i] = 0;
+                sb.append("0 ");
             }
             stack.push(i);
         }
 
-        for(int i=0; i<n; i++) {
-            System.out.print(answer[i]+" ");
-        }
+        System.out.println(sb.toString());
     }
 }
