@@ -12,14 +12,14 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
 
         int answer = 0;
-        List<String> arr = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
         for (int i = 0; i < n; i++) {
-            arr.add(br.readLine());
+            map.put(br.readLine(), 0);
         }
 
         for (int i = 0; i < m; i++) {
             String s = br.readLine();
-            if (arr.contains(s)) answer++;
+            if (map.containsKey(s)) answer++;
         }
 
         System.out.println(answer);
