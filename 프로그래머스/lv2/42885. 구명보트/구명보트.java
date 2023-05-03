@@ -3,12 +3,20 @@ class Solution {
     public int solution(int[] people, int limit) {
         int answer = 0;
         Arrays.sort(people);
-        int i=people.length-1;
-        int k = 0;
-        while(k<=i) {
-            if(people[i]+people[k]<=limit) k++;
-            i--;
+        
+        int leftIdx = 0;
+        int rightIdx = people.length - 1;
+        
+        while (leftIdx < rightIdx) {
+            if (people[leftIdx] + people[rightIdx] <= limit) {
+                rightIdx--;
+                leftIdx++;
+            } else {
+                rightIdx--;
+            }
             answer++;
+            
+            if (leftIdx == rightIdx) answer++;
         }
         return answer;
     }
