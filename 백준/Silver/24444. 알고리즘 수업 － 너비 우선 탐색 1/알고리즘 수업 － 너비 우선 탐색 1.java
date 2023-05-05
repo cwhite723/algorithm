@@ -14,9 +14,11 @@ public class Main {
     }
 
     private static void output() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= cntVertex; i++) {
-            System.out.println(sequence[i]);
+            sb.append(sequence[i]).append("\n");
         }
+        System.out.println(sb.toString());
     }
 
     private static void bfs() {
