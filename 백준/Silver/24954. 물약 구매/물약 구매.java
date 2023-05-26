@@ -37,6 +37,12 @@ public class Main {
         System.out.println(minPrice);
     }
 
+    private static int[] copyArray(int[] array) {
+        int[] copy = new int[array.length];
+        System.arraycopy(array, 0, copy, 0, array.length);
+
+        return copy;
+    }
     private static void solve(int start, int totalPrice, int depth, int[] originPrice) {
         if (depth == cntPotion) {
             minPrice = Math.min(minPrice, totalPrice);
@@ -45,7 +51,7 @@ public class Main {
         for (int k = 1; k <= cntPotion; k++) {
             if (!isVisited[k]) {
                 isVisited[k] = true;
-                int[] copyPrice = Arrays.copyOf(originPrice, originPrice.length);
+                int[] copyPrice = copyArray(originPrice);
 
                 for (int i = 0; i < graph.get(start).size(); i++) {
                     Potion cur = graph.get(start).get(i);
