@@ -43,22 +43,25 @@ public class Main {
 
         return copy;
     }
+
     private static void solve(int start, int totalPrice, int depth, int[] originPrice) {
         if (depth == cntPotion) {
             minPrice = Math.min(minPrice, totalPrice);
         }
 
+        int[] copyPrice = copyArray(originPrice);
+
+        for (Potion potion : graph.get(start)) {
+            int number = potion.number;
+            int discount = potion.discount;
+
+            copyPrice[number] -= discount;
+            if (copyPrice[number] <= 0) copyPrice[number] = 1;
+        }
+
         for (int k = 1; k <= cntPotion; k++) {
             if (!isVisited[k]) {
                 isVisited[k] = true;
-                int[] copyPrice = copyArray(originPrice);
-
-                for (int i = 0; i < graph.get(start).size(); i++) {
-                    Potion cur = graph.get(start).get(i);
-                    copyPrice[cur.number] -= cur.discount;
-
-                    if (copyPrice[cur.number] <= 0) copyPrice[cur.number] = 1;
-                }
                 solve(k, totalPrice + copyPrice[k], depth + 1, copyPrice);
                 isVisited[k] = false;
             }
