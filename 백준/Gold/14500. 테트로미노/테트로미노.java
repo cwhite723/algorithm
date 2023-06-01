@@ -32,6 +32,11 @@ public class Main {
         }
     }
 
+    private static boolean isPossible(int x, int y) {
+        if (x < 0 || y < 0 || x >= row || y >= column) return false;
+        else return true;
+    }
+
     private static void goSpecialBlock(int x, int y, int total) {
         int[][] dx = {{1, 2, 1}, {1, 2, 1}, {0, 0, 1}, {0, 0, -1}};
         int[][] dy = {{0, 0, 1}, {0, 0, -1}, {1, 2, 1}, {1, 2, 1}};
@@ -42,7 +47,7 @@ public class Main {
                 int nextX = x + dx[i][k];
                 int nextY = y + dy[i][k];
 
-                if (nextX < 0 || nextY < 0 || nextX >= row || nextY >= column) {
+                if (!isPossible(nextX, nextY)) {
                     break;
                 }
 
@@ -62,7 +67,7 @@ public class Main {
             int nextX = x + dx[i];
             int nextY = y + dy[i];
 
-            if (nextX >= 0 && nextY >= 0 && nextX < row && nextY < column) {
+            if (isPossible(nextX, nextY)) {
                 if (!isVisited[nextX][nextY]) {
                     isVisited[nextX][nextY] = true;
                     dfs(nextX, nextY, total + board[nextX][nextY], depth + 1);
