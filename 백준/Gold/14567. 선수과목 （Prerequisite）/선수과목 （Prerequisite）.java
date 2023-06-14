@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -39,10 +37,13 @@ public class Main {
         }
     }
 
-    private static void output() {
+    private static void output() throws IOException {
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         for (int i = 1; i <= cntSubject; i++) {
-            System.out.print(result[i] + " ");
+            bw.write(result[i] + " ");
         }
+        bw.flush();
+        bw.close();
     }
 
     private static void input() throws IOException {
