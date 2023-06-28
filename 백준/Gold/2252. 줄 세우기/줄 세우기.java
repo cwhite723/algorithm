@@ -16,9 +16,11 @@ public class Main {
     }
 
     private static void output() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= countStudent; i++) {
-            System.out.print(result[i] + " ");
+            sb.append(result[i]).append(" ");
         }
+        System.out.println(sb);
     }
 
     private static void topologicalSort() {
