@@ -1,30 +1,22 @@
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st;
+        int numberCount = Integer.parseInt(br.readLine());
 
-        ArrayList<Integer> arr = new ArrayList<>();
-
-        int N = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine());
-
-        for(int i=0; i<N; i++) {
-            arr.add(Integer.parseInt(st.nextToken()));
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < numberCount; i++) {
+            int number = Integer.parseInt(st.nextToken());
+            if (number > max) max = number;
+            if (number < min) min = number;
         }
 
-        int max = Collections.max(arr);
-        int min = Collections.min(arr);
-
-        bw.write(min + " " + max);
-        bw.flush();
-        bw.close();
-        br.close();
-
+        System.out.println(min + " " + max);
     }
 }
