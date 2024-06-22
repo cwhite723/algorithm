@@ -1,35 +1,35 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int k = Integer.parseInt(st.nextToken());
+        int countPerson = Integer.parseInt(st.nextToken());
+        int sequence = Integer.parseInt(st.nextToken());
 
-        Queue<Integer> qu = new LinkedList<>();
-        List<Integer> list = new ArrayList<>();
-        for (int i = 1; i <= n; i++) {
-            qu.add(i);
+        LinkedList<Integer> list = new LinkedList<>();
+        List<Integer> answer = new ArrayList<>();
+        for (int i = 0; i < countPerson; i++) {
+            list.add(i + 1);
         }
 
-        while(!qu.isEmpty()) {
-            for (int i = 0; i < k-1; i++) {
-                qu.add(qu.poll());
-            }
-            list.add(qu.poll());
+        int index = 0;
+        while (!list.isEmpty()) {
+            index = (index + sequence - 1) % list.size();
+            answer.add(list.remove(index));
         }
 
-        sb.append("<");
-        for (int i = 0; i < list.size()-1; i++) {
-            sb.append(list.get(i)).append(", ");
+        StringBuilder sb = new StringBuilder("<");
+        for (int i = 0; i < countPerson - 1; i++) {
+            sb.append(answer.get(i)).append(", ");
         }
-        sb.append(list.get(list.size()-1)).append(">");
-
-        System.out.println(sb.toString());
+        sb.append(answer.get(countPerson - 1)).append(">");
+        System.out.println(sb);
     }
 }
