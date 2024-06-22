@@ -1,9 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -13,23 +12,18 @@ public class Main {
         int countPerson = Integer.parseInt(st.nextToken());
         int sequence = Integer.parseInt(st.nextToken());
 
-        LinkedList<Integer> list = new LinkedList<>();
-        List<Integer> answer = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         for (int i = 0; i < countPerson; i++) {
             list.add(i + 1);
         }
 
+        StringBuilder answer = new StringBuilder("<");
         int index = 0;
-        while (!list.isEmpty()) {
+        while (list.size() > 1) {
             index = (index + sequence - 1) % list.size();
-            answer.add(list.remove(index));
+            answer.append(list.remove(index)).append(", ");
         }
-
-        StringBuilder sb = new StringBuilder("<");
-        for (int i = 0; i < countPerson - 1; i++) {
-            sb.append(answer.get(i)).append(", ");
-        }
-        sb.append(answer.get(countPerson - 1)).append(">");
-        System.out.println(sb);
+        answer.append(list.get(0)).append(">");
+        System.out.println(answer);
     }
 }
