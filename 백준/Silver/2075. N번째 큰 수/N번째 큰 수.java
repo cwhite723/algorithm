@@ -8,12 +8,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int number = Integer.parseInt(br.readLine());
 
-        PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1 - o2;
-            }
-        });
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
         StringTokenizer st;
         for (int i = 0; i < number; i++) {
             st = new StringTokenizer(br.readLine());
