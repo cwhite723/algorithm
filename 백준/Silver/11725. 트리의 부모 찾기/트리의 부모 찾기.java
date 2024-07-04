@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -40,8 +38,12 @@ public class Main {
             }
         }
 
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
         for (int i = 2; i <= n; i++) {
-            System.out.println(parents[i]);
+            sb.append(parents[i]).append("\n");
         }
+        bw.write(sb.toString());
+        bw.flush();
     }
 }
