@@ -1,27 +1,36 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
-public class Main {
-    public static void main(String[] args) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        Stack<Integer> st = new Stack<>();
 
-        int start = 1;
-        for(int i=0; i<n; i++) {
-            int num = Integer.parseInt(br.readLine());
-            while(start<=num) {
-                st.push(start++);
-                sb.append("+\n");
-            }
-            if(!st.isEmpty()&&st.peek()==num) {
-                st.pop();
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        
+        Queue<Integer> queue = new LinkedList<>();
+        
+        for (int i = 0; i < n; i++) {
+            queue.offer(Integer.parseInt(br.readLine()));
+        }
+        
+        Stack<Integer> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+        
+        for (int i = 1; i <= n; i++) {
+            stack.push(i);
+            sb.append("+\n");
+            
+            while (!stack.isEmpty() && !queue.isEmpty() && stack.peek().equals(queue.peek())) {
+                stack.pop();
+                queue.poll();
                 sb.append("-\n");
             }
         }
-        if(!st.isEmpty()) System.out.println("NO");
-        else System.out.println(sb.toString());
-    }
+        
+        if (!stack.isEmpty() || !queue.isEmpty()) {
+            sb = new StringBuilder();
+            sb.append("NO");
+        }
+        
+        System.out.println(sb.toString().trim());
+	}
 }
